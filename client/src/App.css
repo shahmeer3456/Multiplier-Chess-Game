@@ -1,0 +1,554 @@
+/* Modern Chess Game UI */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --light-bg: #ecf0f1;
+  --dark-bg: #34495e;
+  --text-color: #2c3e50;
+  --text-light: #ecf0f1;
+  --success: #2ecc71;
+  --warning: #f39c12;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, var(--light-bg), #bdc3c7);
+  color: var(--text-color);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 1rem 0;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Navigation */
+.navigation-bar {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+}
+
+.nav-tabs {
+  border-bottom: none;
+}
+
+.nav-tabs .nav-link {
+  color: var(--primary-color);
+  border: none;
+  font-weight: 500;
+  transition: var(--transition);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.25rem;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+  color: var(--secondary-color);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.user-info strong {
+  color: var(--secondary-color);
+}
+
+/* Content Area */
+.content-area {
+  flex: 1;
+  padding: 1rem;
+}
+
+/* Game Board Container */
+.game-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.game-board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Game Info Panel */
+.game-info-panel {
+  background-color: var(--light-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.player-name {
+  font-weight: 600;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-name.active {
+  color: var(--secondary-color);
+}
+
+.timer {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background-color: var(--light-bg);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.timer.warning {
+  background-color: var(--warning);
+  color: white;
+}
+
+/* Chat Section */
+.chat-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.7rem 1rem;
+  font-weight: 600;
+}
+
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  padding: 0.5rem 0.8rem;
+  border-radius: 1rem;
+  max-width: 80%;
+  word-break: break-word;
+}
+
+.message-self {
+  background-color: var(--secondary-color);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
+}
+
+.message-other {
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
+}
+
+.message-spectator {
+  background-color: var(--dark-bg);
+  color: white;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.message-info {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  margin: 0.5rem 0;
+}
+
+.chat-input-container {
+  display: flex;
+  padding: 0.5rem;
+  border-top: 1px solid var(--light-bg);
+}
+
+.chat-input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  padding: 0.5rem;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: var(--secondary-color);
+}
+
+.send-button {
+  margin-left: 0.5rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.send-button:hover {
+  background-color: #2980b9;
+}
+
+/* Game History */
+.game-history {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+}
+
+.game-history-item {
+  border-bottom: 1px solid var(--light-bg);
+  padding: 1rem 0;
+  transition: var(--transition);
+}
+
+.game-history-item:hover {
+  background-color: rgba(52, 152, 219, 0.05);
+}
+
+.game-history-item:last-child {
+  border-bottom: none;
+}
+
+/* Lobby */
+.lobby-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.lobby-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.lobby-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lobby-card-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--light-bg);
+  padding-bottom: 0.5rem;
+}
+
+.games-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.game-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 0.5rem;
+  background-color: var(--light-bg);
+  transition: var(--transition);
+}
+
+.game-item:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.game-players {
+  font-weight: 500;
+}
+
+.spectator-count {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+/* Login */
+.login-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.login-form .form-control {
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+}
+
+.login-form .form-control:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+.login-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.register-option {
+  margin-top: 1rem;
+  text-align: center;
+  color: #7f8c8d;
+}
+
+/* User Profile */
+.profile-container {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.profile-join-date {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  background-color: var(--light-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  color: #7f8c8d;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+
+.btn-success {
+  background-color: var(--success);
+  border-color: var(--success);
+}
+
+.btn-outline-secondary {
+  color: var(--primary-color);
+  border-color: #ddd;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Game Status Indicator */
+.game-status {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: var(--light-bg);
+  margin-bottom: 1rem;
+}
+
+.game-status.active {
+  background-color: var(--success);
+  color: white;
+}
+
+.game-status.ended {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Move History */
+.move-history {
+  background-color: var(--light-bg);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.move-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.move-item {
+  display: flex;
+  padding: 0.3rem 0;
+}
+
+.move-number {
+  min-width: 2.5rem;
+  color: #7f8c8d;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .navigation-bar {
+    flex-direction: column;
+  }
+  
+  .nav-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    width: 100%;
+  }
+  
+  .user-info {
+    margin-top: 0.5rem;
+    justify-content: center;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .login-buttons {
+    flex-direction: column;
+  }
+} 
